@@ -7,7 +7,7 @@
  <li ng-repeat="dish in dishes">
  <img ng-src="{{dish.ImageURL}}" style="height:100px; width:150px;" />
  {{dish.Title}}
- <a ng-href="#/dish/{{dish.RecipeID}}" ng-click="selected(dish.RecipeID)">View more</a>
+ <a ng-href="#/dish/{{dish.RecipeID}}">View more</a>
  {{dish.Category}} {{dish.Subcategory}}
  </li>
 </ul>
