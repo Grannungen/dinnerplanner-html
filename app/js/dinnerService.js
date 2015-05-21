@@ -40,7 +40,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   // and selected dinner options for dinner menu
   
   this.setNumberOfGuests = function(num) {
-    guestNumber = num;
+    if (guestNumber >= 0 && num != -1) {
+      guestNumber = num;
+    };
   }
   // should return 
   this.getNumberOfGuests = function() {
