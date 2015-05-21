@@ -10,9 +10,29 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<img src="{{theDish.ImageURL}}" id="dishImage" />
+					<img src="{{theDish.ImageURL}}" id="dishImage" height="200" width="200" />
 				</div>
 			</div>
+			<a href="#/search"><button class="btn" id="backBtn">Back to Select Dish</button></a>
+			<h3>PREPARATION</h3>
+			<p>
+				{{theDish.Instructions}}
+			</p>
+		</div>
+		<div class="container-fluid" id="ingview">
+			<h3>INGREDIENTS</h3>
+				
+			
+			<table style="width:100%" id="ingTable" >
+				<tr ng-repeat="ing in ingredients">
+					<td>
+						{{ ing.Name }} {{ing.Quantity}} {{ing.Unit}} 1SEK
+					</td>
+				</tr>
+					
+			</table>
+			<hr>
+			<button id="confirmDish">Confirm Dish</button>
 		</div>
 	</div>
 	
