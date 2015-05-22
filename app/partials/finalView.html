@@ -4,7 +4,11 @@
 		<table id="printViewTable">
 			<tr ng-repeat="dish in fullMenuList()">
 				<td>
-					{{ dish.Title }}
+					<img src="{{ dish.ImageURL }}" "' height='250' width='250'">
+				</td>
+				<td>
+					<h3> {{ dish.Title }}</h3>
+					<p>	{{ dish.Instructions }} </p>
 				</td>
 			</tr>
 		</table>	

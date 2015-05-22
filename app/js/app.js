@@ -1,5 +1,5 @@
 
-var dinnerPlannerApp = angular.module('dinnerPlanner', ['ngRoute','ngResource']);
+var dinnerPlannerApp = angular.module('dinnerPlanner', ['ngRoute','ngResource','ngCookies']);
 
 
 // Here we configure our application module and more specifically our $routeProvider. 
@@ -49,6 +49,6 @@ dinnerPlannerApp.config(['$routeProvider',
       }).
       
       otherwise({
-        redirectTo: '/search'
+        redirectTo: '/home'
       });
   }]);
