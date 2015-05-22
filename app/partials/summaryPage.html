@@ -1,0 +1,21 @@
+<div id="summaryPage">
+	<div class="row">
+	  	<div class="col-md-4">
+			<table id="summaryTable">
+				<tr ng-repeat="dish in fullMenuList()">
+					<td>
+						<a ng-href="#/dish/{{dish.RecipeID}}">{{ dish.Title }} </a>
+					</td>
+					<td>
+						{{ dish.Ingredients.length }} SEK
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+	<a ng-href="#/final"><button class="btn btn-warning" id="printRecipe"><p style="size:500px">Print Full Recipe</p></button></a>
+	
+</div>
+		

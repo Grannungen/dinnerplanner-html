@@ -25,8 +25,9 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="js/dinnerService.js"></script>
     <script src="js/sideBarCtrl.js"></script>
     <script src="js/searchCtrl.js"></script>
-    <!--<script src="js/dinnerCtrl.js"></script>-->
     <script src="js/dishCtrl.js"></script>
+    <script src="js/summaryCtrl.js"></script>
+    <script src="js/finalViewCtrl.js"></script>
 
 
 
@@ -34,7 +35,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   <body>
     <!-- Here in index.html you should put only the layout that is shared among all the screens (e.g. header
     ,footer, etc.). The rest of the view specific layout will go into the html partials (check partials folder) -->
-   <ng-include src="'partials/dinner-sidebar.html'"></ng-include>
+   <!-- <ng-include src="'partials/dinner-sidebar.html'"></ng-include> -->
    <ng-include src="'partials/header.html'" ></ng-include>
 
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
