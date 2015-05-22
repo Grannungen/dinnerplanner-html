@@ -17,5 +17,9 @@ dinnerPlannerApp.controller('sideBarCtrl', function ($scope,$routeParams,Dinner)
   	return Dinner.getFullMenu();
   }
 
+  $scope.remove = function () {
+    var target = event.target.id;
+    Dinner.removeDishFromMenu(target);
+  }
 });
 

@@ -116,14 +116,12 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   }
 
   this.removeDishFromMenu = function(id) {
-	  console.log(menuList);
     var removeDish = id;
     for (var i = menuList.length - 1; i >= 0; i--) {
-      if (menuList[i].id == removeDish) {
+      if (menuList[i].RecipeID == removeDish) {
         var i = menuList.indexOf(menuList[i]);
         if(i != -1) {
           menuList.splice(i, 1);
-		  console.log(menuList);
         }
         else {
           return

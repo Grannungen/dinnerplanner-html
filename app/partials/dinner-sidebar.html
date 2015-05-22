@@ -14,7 +14,9 @@
 				<table id="chosenDishes">
 					<tr ng-repeat="menu in menuList()">
 						<td>
-							<a ng-href="#/dish/{{menu.RecipeID}}"><button class="btn" ng-click=""> {{ menu.Title }} {{menu.Ingredients.length}} SEK </button></a><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+							<a ng-href="#/dish/{{menu.RecipeID}}"><button class="btn"> {{ menu.Title }} {{menu.Ingredients.length}} SEK </button></a>
+
+							<button ng-click="remove()" id="{{menu.RecipeID}}" class="btn btn-danger"><span id="{{menu.RecipeID}}" class="glyphicon glyphicon-remove"></span></button>
 						</td>
 					</tr>
 				</table>
