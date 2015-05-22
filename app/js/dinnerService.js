@@ -94,7 +94,16 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     return sumIng;  
 
   }
-
+  this.getPriceOfDish = function(dish){
+	  if (this.returnPendingDish() != undefined){
+		  var sumIng = 0;
+		  
+		  for (var i = 0; i < dish.Ingredients.length; i++) {
+			sumIng = sumIng + 1;
+			}
+		  return sumIng
+	  }
+  }
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   this.addDishToMenu = function() {
@@ -107,12 +116,14 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
   }
 
   this.removeDishFromMenu = function(id) {
+	  console.log(menuList);
     var removeDish = id;
     for (var i = menuList.length - 1; i >= 0; i--) {
       if (menuList[i].id == removeDish) {
         var i = menuList.indexOf(menuList[i]);
         if(i != -1) {
           menuList.splice(i, 1);
+		  console.log(menuList);
         }
         else {
           return

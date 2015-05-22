@@ -1,11 +1,7 @@
 // Dinner controller that we use whenever we want to display detailed
 // information for one dish
-dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
+dinnerPlannerApp.controller('DishCtrl', function ($scope, $routeParams,Dinner) {
 	
-	$scope.DishCtrl = {
-		dish: Dinner.returnPendingDish()
-
-	}
   
   // TODO in Lab 5: you need to get the dish according to the routing parameter
 
@@ -30,7 +26,7 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
 
   $scope.addDish = function (dishAdd) {
       Dinner.addDishToMenu();
-      console.log(Dinner.getFullMenu());
+		
   }
 
 

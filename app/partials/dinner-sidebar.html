@@ -14,15 +14,12 @@
 				<table id="chosenDishes">
 					<tr ng-repeat="menu in menuList()">
 						<td>
-							{{ menu.Title }}
+							<a ng-href="#/dish/{{menu.RecipeID}}"><button class="btn" ng-click=""> {{ menu.Title }} {{menu.Ingredients.length}} SEK </button></a><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
 						</td>
 					</tr>
-						
-					
-					<td id ="cellPending"> Pending 0.00 SEK</td>
 				</table>
 		<hr noshade>
-		<p id ="totalPrice"></p>
+		<p id ="totalPrice">Total Price: {{setFullPrice()}} SEK</p>
 		<div>
 			<button class="btn btn-primary" id="confirmDinner">Confirm Dinner</button>
 		</div>

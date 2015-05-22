@@ -26,12 +26,13 @@
 			<table style="width:100%" id="ingTable" >
 				<tr ng-repeat="ing in ingredients">
 					<td>
-						{{ ing.Name }} {{ing.Quantity}} {{ing.Unit}} 1SEK
+						{{ ing.Name }} {{ing.Quantity}} {{ing.Unit}} 1SEK 
 					</td>
 				</tr>
 					
 			</table>
 			<hr>
+			<p>Total: {{ingredients.length}} SEK</p>
 			<a ng-href="#/search"><button ng-click="addDish(theDish)" id="confirmDish">Confirm Dish</button>
 		</div>
 	</div>
