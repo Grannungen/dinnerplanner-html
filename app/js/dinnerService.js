@@ -6,28 +6,35 @@
 dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 
   this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxL42eEy92cbUd38UPFF5j8VG7f501n'});
+  this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvxL42eEy92cbUd38UPFF5j8VG7f501n'});
   
   this.getMenuList = function(){
-	  var menuListID = [];
-	  var MenuListLength = $cookieStore.get('menuListLength');
-	  if (MenuListLength == undefined){
-		  MenulistLength = 0;
+	  menuListID = $cookieStore.get('menuListIDs');
+	  if ($cookieStore.get('menuListIDs') == undefined){
+		  menuListID = [];
 	  }
-	  for (var i=0;i < MenuListLength; i++){
-		  menuListID.push($cookieStore.get(i));
-	  }
+	  console.log(menuListID);
 	  var menuList = [];
-	  for (var j=0; j < menuListID.length; j++){
+	  for (var j=0; j < menuListID.length ; j++){
 		  var savedDish = this.Dish.get({id:menuListID[j]});
-		  console.log(savedDish);
 		  menuList.push(savedDish);
 	  }
 	  return menuList;
   }
   
+  this.getNumberOfGuests = function() {
+	  if ($cookieStore.get('nrOfGuests') != undefined){
+		  var guestNumber = $cookieStore.get('nrOfGuests');
+	  } else {
+		  var guestNumber = 0;
+	  }	
+	  return guestNumber;
+  }
+  
   var observerArray = [];
+  var menuListID = [];
   var menuList = this.getMenuList();
-  var guestNumber = $cookieStore.get('nrOfGuests');
+  var guestNumber = this.getNumberOfGuests();
   var PendingDish;
   var menuArray;
   var dishType;
@@ -68,10 +75,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     };
   }
   // should return 
-  this.getNumberOfGuests = function() {
-    return guestNumber;
+ 
       //TODO Lab 2
-  }
+  
   
   this.thePendingDish = function(dish) {
     PendingDish = dish; 
@@ -109,15 +115,17 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   this.getTotalMenuPrice = function() {
     var sumIng = 0;
 	if (menuList == undefined){
-		for (var i = 0; i < menuList.length; i++) {
-		  
-		  for (var j = 0; j < menuList[i].Ingredients.length; j++) {
-			sumIng = sumIng + 1;
-			}
+		menuList = [];
+	}
+	for (var i = 0; i < menuList.length; i++) {
+	  
+	  for (var j = 0; j < menuList[i].Ingredients.length; j++) {
+		sumIng = sumIng + 1;
 		}
 	}
     return sumIng;  
   }
+  
   this.getPriceOfDish = function(dish){
 	  if (this.returnPendingDish() != undefined){
 		  var sumIng = 0;
@@ -135,10 +143,10 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
       if (menuList[i].Category == PendingDish.Category) {
         this.removeDishFromMenu(menuList[i].RecipeID);}
       }
-	$cookieStore.put(menuList.length, PendingDish.RecipeID);
+	menuListID.push(PendingDish.RecipeID);
+	console.log(menuListID);
+	$cookieStore.put('menuListIDs', menuListID);
     menuList.push(PendingDish);
-	$cookieStore.put('menuListLength', menuList.length);
-	console.log($cookieStore.get('menuListLength'));
   }
   
   this.removeDishFromMenu = function(id) {
@@ -148,8 +156,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
         var i = menuList.indexOf(menuList[i]);
         if(i != -1) {
           menuList.splice(i, 1);
-		  $cookieStore.remove(i);
-		  $cookieStore.put('menuListLength', menuList.length);
+		  menuListID.splice(i, 1);
+		  $cookieStore.put('menuListIDs', menuListID);
         }
         else {
           return
@@ -162,7 +170,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
   //you can use the filter argument to filter out the dish by name or ingredient (use for search)
   //if you don't pass any filter all the dishes will be returned
-  this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvxL42eEy92cbUd38UPFF5j8VG7f501n'});
+  
   
   
 
