@@ -13,7 +13,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 	  if ($cookieStore.get('menuListIDs') == undefined){
 		  menuListID = [];
 	  }
-	  console.log(menuListID);
 	  var menuList = [];
 	  for (var j=0; j < menuListID.length ; j++){
 		  var savedDish = this.Dish.get({id:menuListID[j]});
@@ -118,7 +117,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 		menuList = [];
 	}
 	for (var i = 0; i < menuList.length; i++) {
-	  
+		if (menuList[i].Ingredients == undefined){
+			return sumIng;
+		}
 	  for (var j = 0; j < menuList[i].Ingredients.length; j++) {
 		sumIng = sumIng + 1;
 		}
